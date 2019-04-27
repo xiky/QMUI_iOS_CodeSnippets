@@ -31,6 +31,7 @@ git clone https://github.com/QMUI/QMUI_iOS_CodeSnippets.git ./
 - `psr` - 定义一个 `strong, readonly` 的property
 - `pw` - 定义一个 `weak` 的property
 - `pwr` - 定义一个 `weak, readonly` 的property
+- `load_once` - 创建一个带 `dispatch_once` 的 `+load` 方法
 - `propertySwizzleAssign` - 用 `swizzle` 的方式定义一个 `assign` 的property
 - `propertySwizzleCopy` - 用 `swizzle` 的方式定义一个 `copy` 的property
 - `propertySwizzleStrong` - 用 `swizzle` 的方式定义一个 `strong` 的property
@@ -39,18 +40,23 @@ git clone https://github.com/QMUI/QMUI_iOS_CodeSnippets.git ./
 - `exchangeImplementation` - 重写当前类的 `load` 方法并在其中用 `swizzle` 替换方法实现
 - `exchangeImplementation_QMUI` - 用 QMUI 重写当前类的 `load` 方法并用 `ExchangeImplementations()` 函数替换方法的实现
 - `exchangeMultipleImplementations_QMUI` - 用 QMUI 重写当前类的 `load` 方法并用 `ExchangeImplementations()` 函数批量替换多个方法的实现
-- `override_void_nonArgv` - 用 QMUI 的 `OverrideImplementation()` 重写指定 class 的某个无返回值、无参数的方法实现
-- `override_void_argv` - 用 QMUI 的 `OverrideImplementation()` 修改指定 class 的某个无返回值、带一个参数的方法实现
-- `override_return_nonA` - 用 QMUI 的 `OverrideImplementation()` 修改指定 class 的某个带返回值、无参数的方法实现
-- `override_return_argv` - 用 QMUI 的 `OverrideImplementation()` 修改指定 class 的某个带返回值、带一个参数的方法实现
-- `extend_void_nonA` - 用 QMUI 的 `ExtendImplementationOfVoidMethodWithoutArguments()` 修改指定 class 的某个无返回值、无参数的方法实现
-- `extend_void_argv` - 用 QMUI 的 `ExtendImplementationOfVoidMethodWithSingleArgument()` 修改指定 class 的某个无返回值、带一个参数的方法实现
-- `extend_return_nonArgv` - 用 QMUI 的 `ExtendImplementationOfNonVoidMethodWithoutArguments()` 修改指定 class 的某个带返回值、无参数的方法实现
-- `extend_return_argv` - 用 QMUI 的 `ExtendImplementationOfNonVoidMethodWithSingleArgument()` 修改指定 class 的某个带返回值、带一个参数的方法实现
+- `override_void_non_argv` - 用 QMUI 的 `OverrideImplementation()` 重写指定 class 的某个无返回值、无参数的方法实现
+- `override_void_single_argv` - 用 QMUI 的 `OverrideImplementation()` 修改指定 class 的某个无返回值、带一个参数的方法实现
+- `override_void_two_argvs` - 用 QMUI 的 `OverrideImplementation()` 修改指定 class 的某个无返回值、带两个参数的方法实现
+- `override_return_non_argv` - 用 QMUI 的 `OverrideImplementation()` 修改指定 class 的某个带返回值、无参数的方法实现
+- `override_return_single_argv` - 用 QMUI 的 `OverrideImplementation()` 修改指定 class 的某个带返回值、带一个参数的方法实现
+- `override_return_two_argvs` - 用 QMUI 的 `OverrideImplementation()` 修改指定 class 的某个带返回值、带两个参数的方法实现
+- `extend_void_non_argv` - 用 QMUI 的 `ExtendImplementationOfVoidMethodWithoutArguments()` 修改指定 class 的某个无返回值、无参数的方法实现
+- `extend_void_single_argv` - 用 QMUI 的 `ExtendImplementationOfVoidMethodWithSingleArgument()` 修改指定 class 的某个无返回值、带一个参数的方法实现
+- `extend_void_two_argvs` - 用 QMUI 的 `ExtendImplementationOfVoidMethodWithTwoArguments()` 修改指定 class 的某个无返回值、带两个参数的方法实现
+- `extend_return_non_argv` - 用 QMUI 的 `ExtendImplementationOfNonVoidMethodWithoutArguments()` 修改指定 class 的某个带返回值、无参数的方法实现
+- `extend_return_single_argv` - 用 QMUI 的 `ExtendImplementationOfNonVoidMethodWithSingleArgument()` 修改指定 class 的某个带返回值、带一个参数的方法实现
+- `extend_return_two_argvs` - 用 QMUI 的 `ExtendImplementationOfNonVoidMethodWithTwoArguments()` 修改指定 class 的某个带返回值、带两个参数的方法实现
 
 
 *Block*
-- `blockArguments` - 声明一个用于方法参数的 block
+- `blockParameterInMethod` - 声明一个用于 OC 方法参数的 block
+- `blockParameterInFunction` - 声明一个用于 C 函数参数的 block
 - `blockproperty` - 声明一个用于 property 的 block
 - `blocktypedef` - 用 `typedef` 定义一个 block
 - `blockvar` - 定义一个作为局部变量的 block
@@ -133,7 +139,7 @@ git clone https://github.com/QMUI/QMUI_iOS_CodeSnippets.git ./
 
 *Other*
 - `pragma` - 展开一个用于 Xcode 导航的 `#pragma mark -` 宏
-- `if11` - 展开一个 @available(iOS 11, \*) 的 if 判断
+- `osif` - 展开一个 @available(iOS xxx, \*) 的 if 判断
 - `externRefInH` - 在 `*.h` 文件里声明一个 `extern const` 的指针
 - `externRefInM` - 在 `*.m` 文件里为一个 `extern const` 的指针赋值
 - `externValueInH` - 在 `*.h` 文件里声明一个 `extern const` 的值变量
